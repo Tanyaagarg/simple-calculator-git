@@ -14,7 +14,7 @@ def multiply(a, b):
 
 def divide(a, b):
     if b == 0:
-        return "Error: cannot divide by zero"
+        raise ValueError("Cannot divide by zero")
     return a / b
 
 
@@ -25,6 +25,9 @@ if __name__ == "__main__":
     op = input("Choose operation (+ - * /): ")
     ops = {"+": add, "-": subtract, "*": multiply, "/": divide}
     if op in ops:
-        print("Result:", ops[op](x, y))
+        try:
+            print("Result:", ops[op](x, y))
+        except ValueError as e:
+            print("Error:", e)
     else:
         print("Invalid operation")
